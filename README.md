@@ -1,4 +1,10 @@
-# Raytolfas Designer
+![GitHub Repo Banner](https://ghrb.waren.build/render/banner?stats=false&header=Raytolfas+Designer&bg=F3F4F6&color=1F2937&headerfont=DynaPuff&support=false)
+
+![License](https://badgen.net/github/license/raytolfas/designer)
+![Stars](https://badgen.net/github/stars/raytolfas/designer)
+![License](https://badgen.net/github/release/raytolfas/designer/latest)
+
+---
 
 A fast, offline-first desktop graphic design tool built on Electron, React, and Fabric.js.
 
