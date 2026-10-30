@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-web
+out
+.vscode
+.DS_Store
+.eslintcache
+*.log*

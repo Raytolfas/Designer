@@ -1,0 +1,48 @@
+name: Deploy Web to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      cname:
+        description: 'Custom domain (CNAME)'
+        required: false
+        default: 'designer.raytolfas.com'
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Build and Deploy Web
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build web application
+        run: npm run build:web
+
+      - name: Configure domain and GitHub Pages
+        run: |
+          touch dist-web/.nojekyll
+          if [ -n "${{ inputs.cname }}" ]; then
+            echo "${{ inputs.cname }}" > dist-web/CNAME
+          fi
+
+      - name: Deploy to GitHub Pages web branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: web
+          publish_dir: ./dist-web
